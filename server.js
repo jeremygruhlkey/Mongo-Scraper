@@ -10,7 +10,7 @@ const collections = ["posts"];
 
 app.use(express.static("public"));
 
-app.get("/scrape", (req, res) => {
+app.get("/api/scrape", (req, res) => {
     request("https://www.theonion.com/", (error, response, html) => {
         const $ = cheerio.load(html);
         let results = [];
@@ -28,7 +28,7 @@ app.get("/scrape", (req, res) => {
             
         })
         console.log(results);
-        res.json(results);
+        res.send(results);
     })
   
 })
