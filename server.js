@@ -8,20 +8,29 @@ const app = express();
 const databaseURL = "headlines";
 const collections = ["posts"];
 
-request("https://www.theonion.com/", (error, response, html) => {
-    const $ = cheerio.load(html);
-    let results = [];
+app.use(express.static("public"));
 
-    $("article.postlist__item").each( (i, element) => {
-        const title = $(element).find("h1").find("a").text();
-        const link = $(element).find("h1").find("a").attr("href");
+app.get("/scrape", (req, res) => {
+    request("https://www.theonion.com/", (error, response, html) => {
+        const $ = cheerio.load(html);
+        let results = [];
 
-        results.push({
-            title:title,
-            link:link});
-        
+        $("article.postlist__item").each( (i, element) => {
+            const title = $(element).find("h1").find("a").text();
+            const link = $(element).find("h1").find("a").attr("href");
+            const summary = $(element).find(".excerpt").find("p").text();
+
+            results.push({
+                title:title,
+                link:link,
+                summary:summary,
+            });
+            
+        })
+        console.log(results);
+        res.json(results);
     })
-    console.log(results);
+  
 })
 
 app.listen(3000, () => {
