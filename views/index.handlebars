@@ -3,12 +3,13 @@
     <p>
         {{!-- {{#if articles}} --}}
         {{#each articles}}
-            <img src= "{{image}}">
-            <p>{{title}}</p>
-            <p>{{link}}</p>
+            <img src= "{{image}}" height="100" width="175">
+            <br>
+            {{!-- <p>{{title}}</p> --}}
+            <a href="{{link}}">{{title}}</a>
             <p>{{summary}}</p>
             <button class="save">Save</button>
-            <br>
+            <br><br><br>
         {{/each}}
         {{!-- {{/if}} --}}
     </p>
