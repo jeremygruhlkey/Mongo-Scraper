@@ -21,7 +21,7 @@ app.set("view engine", "handlebars");
 app.get("/", (req,res) => {
     res.render("index");
 })
-app.post("/api/scrape", (req, res) => {
+app.get("/api/scrape", (req, res) => {
     request("https://www.theonion.com/", (error, response, html) => {
         const $ = cheerio.load(html);
         let results = [];
@@ -44,7 +44,7 @@ app.post("/api/scrape", (req, res) => {
         };
         // console.log(results);
         console.log(allTheArticles)
-        res.send(allTheArticles);
+        res.render("index", allTheArticles);
     })
   
 })

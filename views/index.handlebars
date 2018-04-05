@@ -2,10 +2,12 @@
 <button id="scrape">Scrape!</button>
 <div class = "articles">
     <p>
+        {{#if articles}}
         {{#each articles}}
             <p>{{title}}</p>
             <p>{{link}}</p>
             <p>{{summary}}</p>
         {{/each}}
+        {{/if}}
     </p>
 </div>
