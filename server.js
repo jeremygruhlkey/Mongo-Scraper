@@ -2,6 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cheerio = require("cheerio");
 const request = require("request");
+const exphbs = require("express-handlebars");
+const bodyParser = require("body-parser")
 
 const app = express();
 
@@ -10,6 +12,15 @@ const collections = ["posts"];
 
 app.use(express.static("public"));
 
+app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.json());
+
+app.engine("handlebars", exphbs({ defaultLayout: "main"}));
+app.set("view engine", "handlebars");
+
+app.get("/", (req,res) => {
+    res.render("index");
+})
 app.get("/api/scrape", (req, res) => {
     request("https://www.theonion.com/", (error, response, html) => {
         const $ = cheerio.load(html);
