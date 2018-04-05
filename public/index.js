@@ -4,14 +4,9 @@ $(document).ready( ()=> {
             console.log("scrape pressed")
             $.ajax({
                 url: "api/scrape",
-                type: "GET"
-            }).done( (result) => {
+                type: "POST"
+            }).then( (result) => {
                 console.log(result)
             })
         })
-
-
-
-
-
 })

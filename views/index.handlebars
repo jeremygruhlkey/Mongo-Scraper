@@ -1,2 +1,11 @@
 <h1>Hey! Would you like to scrape some articles?? Click the button!</h1>
 <button id="scrape">Scrape!</button>
+<div class = "articles">
+    <p>
+        {{#each articles}}
+            <p>{{title}}</p>
+            <p>{{link}}</p>
+            <p>{{summary}}</p>
+        {{/each}}
+    </p>
+</div>
