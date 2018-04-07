@@ -3,15 +3,42 @@
     
         {{!-- {{#if articles}} --}}
         {{#each saved}}
-        <div class = "post-entry"></div>
-            <img src= "{{image}}" height="100" width="175">
-            <br>
-            {{!-- <p>{{title}}</p> --}}
-            <a href="{{link}}">{{title}}</a>
-            <p>{{summary}}</p>
-            <button class="delete" data-id = "{{id}}">Delete</button>
-            <button class="comment" data-id = "{{id}}">Comment</button>
-            <br><br><br>
+        <div class="row post">
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail post-entry">
+            <img src= "{{image}}" height="350" width="275">
+            <div class="caption">
+                <h3>{{title}}</h3>
+                <p>{{summary}}</p>
+                <button class="btn btn-primary delete" role="button" data-id = "{{id}}">Delete</button>
+                <button class="btn btn-warning notes" role="button" data-id = "{{id}}">Notes</button>
+                <a href="{{link}}"><button class="btn btn-danger" role="button"> Link</button></a>
+            </div>
+            </div>
+        </div>
+
+        <div class="modal modal-{{_id}}" tabindex="-1" role="dialog">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title">{{title}}</h5>
+		      </div>
+		      <div class="modal-body">
+		        <div class="form-group">
+				  <div class="notes-group">
+				  {{#each notes}}
+				  	<p class="note-entry note-{{_id}}">{{body}}<span class="note-entry" aria-hidden="true"><a href="#" id="{{_id}}" class="delete-note"><img class="deleteImg" src="./images/delete.png"></img></a></span></p>
+				  {{/each}}
+				  </div>
+				  <textarea class="note-{{_id}} form-control" id="{{_id}}" rows="3"></textarea>
+				</div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" id="{{_id}}" class="save-note btn btn-primary">Save Note</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
         </div>
         {{/each}}
         {{!-- {{/if}} --}}

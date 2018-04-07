@@ -27,4 +27,10 @@ $(document).ready( ()=> {
             location.reload();
         })
     })
+
+    $(".notes").on("click", function(event){
+        const id = $(this).attr("data-id");
+        $(".modal-" + id).modal("show");
+        console.log("notes clicked");
+    })
 })
