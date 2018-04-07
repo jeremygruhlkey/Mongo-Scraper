@@ -1,0 +1,8 @@
+.thumbnail {
+    float: none;
+    width: 300px;
+}
+
+.articles {
+    float: left;
+}

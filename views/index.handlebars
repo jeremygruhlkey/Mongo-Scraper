@@ -1,19 +1,36 @@
-<h1>Totally real news!!</h1>
-<a href = "/saved" >Saved</a>
+<div class="page-header">
+  <h1>Totally Real News <small>...if you don't read closely.</small></h1>
+</div>
 <div class = "articles">
     
-        {{!-- {{#if articles}} --}}
-        {{#each articles}}
-        <div class = "post-entry"></div>
-            <img src= "{{image}}" height="100" width="175">
-            <br>
-            {{!-- <p>{{title}}</p> --}}
-            <a href="{{link}}">{{title}}</a>
-            <p>{{summary}}</p>
-            <button class="save" data-image = "{{image}}" data-title = "{{title}}" data-link = "{{link}}" data-summary = "{{summary}}">Save</button>
-            <br><br><br>
+        
+    {{!-- {{#each articles}}
+    <div class = "post-entry"></div>
+        <img src= "{{image}}" height="100" width="175">
+        <br>
+        <a href="{{link}}">{{title}}</a>
+        <p>{{summary}}</p>
+        <button class="save" data-image = "{{image}}" data-title = "{{title}}" data-link = "{{link}}" data-summary = "{{summary}}">Save</button>
+        <br><br><br>
+    </div>
+    {{/each}} --}}
+
+
+
+    {{#each articles}}
+        <div class="row">
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail post-entry">
+            <img src= "{{image}}" height="350" width="275">
+            <div class="caption">
+                <h3>{{title}}</h3>
+                <p>{{summary}}</p>
+                <button class="btn btn-primary save" role="button" data-image = "{{image}}" data-title = "{{title}}" data-link = "{{link}}" data-summary = "{{summary}}">Save</button>
+                <button><a href="{{link}}" class="btn btn-danger" role="button">Link</a></button>
+            </div>
+            </div>
         </div>
-        {{/each}}
-        {{!-- {{/if}} --}}
-    
+        </div>
+    {{/each}}
+
 </div>
