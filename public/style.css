@@ -1,8 +1,9 @@
 .thumbnail {
-    float: none;
     width: 300px;
+    height: 570px;
+    margin: 10px;
 }
 
-.articles {
+.post {
     float: left;
 }
