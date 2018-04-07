@@ -1,16 +1,18 @@
 <h1>Totally real news!!</h1>
 <div class = "articles">
-    <p>
+    
         {{!-- {{#if articles}} --}}
         {{#each articles}}
+        <div class = "post-entry"></div>
             <img src= "{{image}}" height="100" width="175">
             <br>
             {{!-- <p>{{title}}</p> --}}
             <a href="{{link}}">{{title}}</a>
             <p>{{summary}}</p>
-            <button class="save">Save</button>
+            <button class="save" data-image = "{{image}}" data-title = "{{title}}" data-link = "{{link}}" data-summary = "{{summary}}">Save</button>
             <br><br><br>
+        </div>
         {{/each}}
         {{!-- {{/if}} --}}
-    </p>
+    
 </div>
