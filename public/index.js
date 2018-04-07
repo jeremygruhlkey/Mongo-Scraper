@@ -16,4 +16,15 @@ $(document).ready( ()=> {
             alert("You saved an article. Go to Saved Articles to view and comment.")
         })
     })
+
+    $(".delete").on("click", function(event){
+        const id = $(this).attr("data-id")
+        console.log("delete clicked");
+        $.ajax("/api/deleteArticle/" + id, {
+            type: "DELETE"
+        }).then( () => {
+            console.log("article deleted");
+            location.reload();
+        })
+    })
 })

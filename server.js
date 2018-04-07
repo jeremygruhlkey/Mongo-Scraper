@@ -54,8 +54,11 @@ app.get("/", (req,res) => {
 
 app.get("/saved", (req, res) => {
     db.Article.find({})
-        .then( (dbArticles) => {
-            res.json(dbArticles)
+        .then( (dbSaved) => {
+            savedArticles = {
+                saved: dbSaved
+            }
+            res.render("saved", savedArticles)
         })
 })
 app.post("/api/newSaved/", (req, res) => {
@@ -67,7 +70,22 @@ app.post("/api/newSaved/", (req, res) => {
             link: req.body.postLink,
             summary: req.body.postSummary
         }
-    )
+    ).then( (result) => {
+        res.json(result)
+    }).catch(err => {
+        console.log(err)
+    })
+})
+
+app.delete("/api/deleteArticle/:id", (req, res) => {
+    console.log(req.params.id)
+    db.Article.deleteOne({
+        _id: req.params.id
+    }).then((result) => {
+        res.json(result)
+    }).catch(err => {
+        console.log(err)
+    })
 })
 
 app.listen(3000, () => {

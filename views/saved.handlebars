@@ -1,0 +1,20 @@
+<h1>Saved</h1>
+<a href = "/" >Other News</a>
+<div class = "articles">
+    
+        {{!-- {{#if articles}} --}}
+        {{#each saved}}
+        <div class = "post-entry"></div>
+            <img src= "{{image}}" height="100" width="175">
+            <br>
+            {{!-- <p>{{title}}</p> --}}
+            <a href="{{link}}">{{title}}</a>
+            <p>{{summary}}</p>
+            <button class="delete" data-id = "{{id}}">Delete</button>
+            <button class="comment" data-id = "{{id}}">Comment</button>
+            <br><br><br>
+        </div>
+        {{/each}}
+        {{!-- {{/if}} --}}
+    
+</div>
