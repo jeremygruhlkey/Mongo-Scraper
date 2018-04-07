@@ -7,13 +7,17 @@ const bodyParser = require("body-parser")
 
 const app = express();
 
-const databaseURL = "headlines";
-const collections = ["posts"];
+const db = require("./models");
+
+// const databaseURL = "headlines";
+// const collections = ["articles", "notes"];
 
 app.use(express.static("public"));
 
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
+
+mongoose.connect("mongodb://localhost/Onion-Scraper")
 
 app.engine("handlebars", exphbs({ defaultLayout: "main"}));
 app.set("view engine", "handlebars");
@@ -48,8 +52,22 @@ app.get("/", (req,res) => {
   
 })
 
+app.get("/saved", (req, res) => {
+    db.Article.find({})
+        .then( (dbArticles) => {
+            res.json(dbArticles)
+        })
+})
 app.post("/api/newSaved/", (req, res) => {
     console.log(req.body);
+    db.Article.create(
+        {
+            title: req.body.postTitle,
+            image: req.body.postImage,
+            link: req.body.postLink,
+            summary: req.body.postSummary
+        }
+    )
 })
 
 app.listen(3000, () => {
