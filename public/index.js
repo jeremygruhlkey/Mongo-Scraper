@@ -47,7 +47,7 @@ $(document).ready( ()=> {
             method: "POST",
             data: note
         }).done( function(res){
-
+            console.log(res)
             })
             $(".modal").modal("hide")
             $(".note-" + id).val("");

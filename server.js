@@ -17,7 +17,12 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
 
-mongoose.connect("mongodb://localhost/Onion-Scraper")
+const MONGODB_URI =process.env.MONGODB_URI || "mongodb://localhost/Onion-Scraper"
+
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI, {
+    // useMongoClient: true
+});
 
 app.engine("handlebars", exphbs({ defaultLayout: "main"}));
 app.set("view engine", "handlebars");
@@ -93,10 +98,22 @@ app.post("/api/addnote/:id", (req, res) => {
     console.log(req.params.id);
     db.Note.create({
         body: req.body.body
-    }).then((dbNote) => {
+    })
+    .then((dbNote) => {
         return db.Article.findOneAndUpdate({_id: req.params.id}, {$push: {notes: dbNote._id} }, {new: true} )
-    }).then((dbNote) => {
-        
+    }).then(() => {
+        db.Article.find({})
+        .populate("notes")
+        .then( (dbSaved) => {
+            console.log(dbSaved)
+            console.log(res);
+            savedArticles = {
+                saved: dbSaved
+            }
+            res.render("saved", savedArticles)
+        }).catch((error) => {
+            console.log(error)
+        })
     })
 })
 
