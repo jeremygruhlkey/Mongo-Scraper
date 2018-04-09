@@ -94,7 +94,7 @@ app.post("/api/addnote/:id", (req, res) => {
     db.Note.create({
         body: req.body.body
     }).then((dbNote) => {
-        return db.Article.findOneAndUpdate({id: req.params.id}, {$push: {notes: dbNote._id} }, {new: true} )
+        return db.Article.findOneAndUpdate({_id: req.params.id}, {$push: {notes: dbNote._id} }, {new: true} )
     }).then((dbNote) => {
         
     })

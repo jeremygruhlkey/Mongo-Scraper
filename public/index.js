@@ -43,7 +43,7 @@ $(document).ready( ()=> {
         }
 
         $.ajax({
-            url: "/api/addnote/:" + id,
+            url: "/api/addnote/" + id,
             method: "POST",
             data: note
         }).done( function(res){
