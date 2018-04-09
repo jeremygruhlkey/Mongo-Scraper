@@ -21,7 +21,7 @@ const MONGODB_URI =process.env.MONGODB_URI || "mongodb://localhost/Onion-Scraper
 
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI, {
-    // useMongoClient: true
+    useMongoClient: true
 });
 
 app.engine("handlebars", exphbs({ defaultLayout: "main"}));
