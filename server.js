@@ -99,17 +99,18 @@ app.post("/api/addnote/:id", (req, res) => {
     })
     .then((dbNote) => {
         return db.Article.findOneAndUpdate({_id: req.params.id}, {$push: {notes: dbNote._id} }, {new: true} )
-    }).then(() => {
-        db.Article.find({})
-        .populate("notes")
-        .then( (dbSaved) => {
-            console.log(dbSaved)
-            // console.log(res);
-            savedArticles = {
-                saved: dbSaved
-            }
-            res.render("saved", savedArticles)
-        }).catch((error) => {
+    // }).then(() => {
+    //     db.Article.find({})
+    //     .populate("notes")
+    //     .then( (dbSaved) => {
+    //         console.log(dbSaved)
+    //         // console.log(res);
+    //         savedArticles = {
+    //             saved: dbSaved
+    //         }
+    //         res.render("saved", savedArticles)
+    //     })
+        .catch((error) => {
             console.log(error)
         })
     })

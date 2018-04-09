@@ -51,6 +51,7 @@ $(document).ready( ()=> {
             })
             $(".modal").modal("hide")
             $(".note-" + id).val("");
+            window.location ="/saved"
         })
         
 })
