@@ -88,6 +88,18 @@ app.delete("/api/deleteArticle/:id", (req, res) => {
     })
 })
 
+app.post("/api/addnote/:id", (req, res) => {
+    console.log(req.body);
+    console.log(req.params.id);
+    db.Note.create({
+        body: req.body.body
+    }).then((dbNote) => {
+        return db.Article.findOneAndUpdate({id: req.params.id}, {$push: {notes: dbNote._id} }, {new: true} )
+    }).then((dbNote) => {
+        
+    })
+})
+
 app.listen(3000, () => {
     console.log("Listening on port 3000!!")
 })

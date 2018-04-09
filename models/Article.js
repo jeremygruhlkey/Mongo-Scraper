@@ -15,8 +15,14 @@ const ArticleSchema = new Schema({
     },
     summary: {
         type: String,
-    }
-})
+    },
+    notes: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Note"
+        }
+    ]
+});
 
 const Article = mongoose.model("Article", ArticleSchema)
 module.exports = Article;

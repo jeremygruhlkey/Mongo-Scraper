@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        <div class="modal modal-{{_id}}" tabindex="-1" role="dialog">
+        <div class="modal modal-{{id}}" tabindex="-1" role="dialog">
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
 		      <div class="modal-header">
@@ -27,14 +27,14 @@
 		        <div class="form-group">
 				  <div class="notes-group">
 				  {{#each notes}}
-				  	<p class="note-entry note-{{_id}}">{{body}}<span class="note-entry" aria-hidden="true"><a href="#" id="{{_id}}" class="delete-note"><img class="deleteImg" src="./images/delete.png"></img></a></span></p>
+				  	<p class="note-entry note-{{id}}">{{body}}<span class="note-entry" aria-hidden="true"><a href="#" id="{{id}}" class="delete-note"><img class="deleteImg" src="./images/delete.png"></img></a></span></p>
 				  {{/each}}
 				  </div>
-				  <textarea class="note-{{_id}} form-control" id="{{_id}}" rows="3"></textarea>
+				  <textarea class="note-body note-{{id}} form-control" id="{{id}}" rows="3"></textarea>
 				</div>
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" id="{{_id}}" class="save-note btn btn-primary">Save Note</button>
+		        <button type="button" id="{{id}}" class="save-note btn btn-primary">Save Note</button>
 		      </div>
 		    </div>
 		  </div>

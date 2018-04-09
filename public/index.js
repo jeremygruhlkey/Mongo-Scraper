@@ -30,7 +30,27 @@ $(document).ready( ()=> {
 
     $(".notes").on("click", function(event){
         const id = $(this).attr("data-id");
+        console.log(id)
         $(".modal-" + id).modal("show");
         console.log("notes clicked");
     })
+
+    $(".save-note").on("click", function(event){
+        const id = $(this).attr("id");
+        const body = $(".note-" + id).val().trim();
+        const note = {
+            body: body
+        }
+
+        $.ajax({
+            url: "/api/addnote/:" + id,
+            method: "POST",
+            data: note
+        }).done( function(res){
+
+            })
+            $(".modal").modal("hide")
+            $(".note-" + id).val("");
+        })
+        
 })
