@@ -7,3 +7,7 @@
 .post {
     float: left;
 }
+
+.comment-remove{
+    background: rgb(240, 114, 114);
+}

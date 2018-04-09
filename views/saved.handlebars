@@ -11,8 +11,8 @@
                 <h3>{{title}}</h3>
                 <p>{{summary}}</p>
                 <button class="btn btn-primary delete" role="button" data-id = "{{id}}">Delete</button>
-                <button class="btn btn-warning notes" role="button" data-id = "{{id}}">Notes</button>
-                <a href="{{link}}"><button class="btn btn-danger" role="button"> Link</button></a>
+                <button class="btn btn-warning notes" role="button" data-id = "{{id}}">{{notes.length}} Notes</button>
+                <a href="{{link}}"><button class="btn btn-danger" role="button">Link</button></a>
             </div>
             </div>
         </div>
@@ -27,7 +27,7 @@
 		        <div class="form-group">
 				  <div class="notes-group">
 				  {{#each notes}}
-				  	<p class="note-entry note-{{id}}">{{body}}<span class="note-entry" aria-hidden="true"></span></p>
+				  	<p class="note-entry note-{{id}}">{{body}}    <span class="note-entry" aria-hidden="true"><button class ="comment-remove glyphicon glyphicon-remove" data-id = {{id}}></button></span></p>
 				  {{/each}}
 				  </div>
 				  <textarea class="note-body note-{{id}} form-control" id="{{id}}" rows="3"></textarea>

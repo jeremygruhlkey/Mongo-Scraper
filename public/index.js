@@ -52,6 +52,18 @@ $(document).ready( ()=> {
             $(".modal").modal("hide")
             $(".note-" + id).val("");
             window.location ="/saved"
+    })
+
+    $(".comment-remove").on("click", function(event){
+        const id = $(this).attr("data-id");
+
+        $.ajax({
+            url: "/api/deletenote/" + id,
+            type: "DELETE"
+        }).then( () => {
+            console.log("article deleted");
+            location.reload();
         })
+    })
         
 })

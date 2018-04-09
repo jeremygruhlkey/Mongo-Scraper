@@ -5,6 +5,8 @@ const request = require("request");
 const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser")
 
+const PORT = process.env.PORT || 3000
+
 const app = express();
 
 const db = require("./models");
@@ -99,23 +101,23 @@ app.post("/api/addnote/:id", (req, res) => {
     })
     .then((dbNote) => {
         return db.Article.findOneAndUpdate({_id: req.params.id}, {$push: {notes: dbNote._id} }, {new: true} )
-    // }).then(() => {
-    //     db.Article.find({})
-    //     .populate("notes")
-    //     .then( (dbSaved) => {
-    //         console.log(dbSaved)
-    //         // console.log(res);
-    //         savedArticles = {
-    //             saved: dbSaved
-    //         }
-    //         res.render("saved", savedArticles)
-    //     })
         .catch((error) => {
             console.log(error)
         })
     })
 })
 
-app.listen(3000, () => {
-    console.log("Listening on port 3000!!")
+app.delete("/api/deletenote/:id", (req, res) => {
+    console.log(req.params.id)
+    db.Note.deleteOne({
+        _id: req.params.id
+    }).then((result) => {
+        res.json(result)
+    }).catch(err => {
+        console.log(err)
+    })
+})
+
+app.listen(PORT, () => {
+    console.log("Listening on port" + PORT)
 })
