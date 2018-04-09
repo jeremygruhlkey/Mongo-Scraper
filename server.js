@@ -20,9 +20,7 @@ app.use(bodyParser.json());
 const MONGODB_URI =process.env.MONGODB_URI || "mongodb://localhost/Onion-Scraper"
 
 mongoose.Promise = Promise;
-mongoose.connect(MONGODB_URI, {
-    useMongoClient: true
-});
+mongoose.connect(MONGODB_URI);
 
 app.engine("handlebars", exphbs({ defaultLayout: "main"}));
 app.set("view engine", "handlebars");
@@ -58,7 +56,7 @@ app.get("/", (req,res) => {
 })
 
 app.get("/saved", (req, res) => {
-    db.Article.find({})
+    db.Article.find({}).populate("notes")
         .then( (dbSaved) => {
             savedArticles = {
                 saved: dbSaved
@@ -106,7 +104,7 @@ app.post("/api/addnote/:id", (req, res) => {
         .populate("notes")
         .then( (dbSaved) => {
             console.log(dbSaved)
-            console.log(res);
+            // console.log(res);
             savedArticles = {
                 saved: dbSaved
             }
